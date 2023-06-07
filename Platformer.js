@@ -23,6 +23,7 @@ const PLAYER_IMAGE_HEIGHT = 96
 const PUSHBACK = 2
 const SPEED = 2
 const JUMP_HEIGHT = 10
+const JUMP_SPEED = 2*SPEED
 
 
 var ctx
@@ -80,7 +81,7 @@ function startCanvas(){
     }
     obstacleArray.push(new Barrier(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH))
     obstacleArray.push(new Barrier(350, 400, 300, 150))
-    //obstacleArray.push(new Barrier(350, 100, 300, 150))
+    obstacleArray.push(new Barrier(350, 100, 300, 150))
 }
 
 function updateCanvas(){
@@ -139,18 +140,18 @@ function updateCanvas(){
         obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)){
             console.log('Touching!', count, movingUp, movingDown, movingLeft, movingRight, jumping, falling)
             //stop = true
+            if(falling&&playerYPosition<=obstacleArray[count].yPosition+2*PUSHBACK){
+                playerYPosition = obstacleArray[count].yPosition-1
+                falling = false
+            }
             if(movingRight){
                 playerXPosition = playerXPosition - PUSHBACK
             }
             if(movingLeft){
                 playerXPosition = playerXPosition + PUSHBACK
             }
-            if(falling){
-                playerYPosition = playerYPosition - PUSHBACK
-                falling = false
-            }
-            if(movingUp){
-                playerYPosition = playerYPosition + PUSHBACK
+            if(movingUp&&playerYPosition>obstacleArray[count].yPosition+obstacleArray[count].height){
+                playerYPosition = playerYPosition + JUMP_SPEED
             }
         }
         count++
@@ -208,7 +209,7 @@ function updateCanvas(){
     //}
 
     if(falling){
-        playerYPosition = playerYPosition + 2*SPEED
+        playerYPosition = playerYPosition + JUMP_SPEED
     } 
 
     if(playerYPosition > 550){
