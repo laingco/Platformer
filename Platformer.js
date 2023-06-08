@@ -60,6 +60,9 @@ var multiplier = 1
 var peak = 175
 var playerWidth = PLAYER_IMAGE_WIDTH/2.65
 var playerHeight = PLAYER_IMAGE_HEIGHT+15
+var time = 0
+var jumpEnds = 0
+var canJump = true
 
 var playerSpriteRight = new Image()
 playerSpriteRight.src = playerSprite
@@ -111,6 +114,10 @@ function updateCanvas(){
 	ctx.fillText("Player Y position: " + playerYPosition,30,50)
     ctx.fillText("Player X speed: " + playerXSpeed,30,70)
 	ctx.fillText("Player Y speed: " + playerYSpeed,30,90)
+    ctx.fillText("Player Falling: " + falling,30,110)
+    ctx.fillText("Player Moving Up: " + movingUp,30,130)
+    ctx.fillText("Player Jump ends: " + jumpEnds,30,150)
+
 
     if(lastDirection > 0){
     //ctx.drawImage(playerSpriteRight, playerXPosition-30, playerYPosition-PLAYER_IMAGE_HEIGHT+10, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT)
@@ -209,30 +216,40 @@ function updateCanvas(){
     //}
 
     if(falling){
-        playerYPosition = playerYPosition + JUMP_SPEED
+        playerYPosition = playerYPosition + JUMP_SPEED + 1
     } 
 
-    if(playerYPosition > 550){
-        playerYPosition = 548
-        falling = false
-    }
+    //if(playerYPosition > 550){
+    //    playerYPosition = 548
+   //     falling = false
+    //}
     ctx.strokeStyle = "rgb(0,255,0)" 
 	ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
     ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
+    time ++
+    if(time == jumpEnds){
+        movingUp = false
+        falling = true
+    }
 }
 
 window.addEventListener('keydown', keyDown)
 
 function keyDown(keyboardEvent){                //Moves the player
     var keyDown = keyboardEvent.key
+    //if(keyDown == 'w' && time < jumpEnds){
+    //   return
+    //}
 
-    if(keyDown == 'w' && !falling && !movingUp){
+    if(keyDown == 'w' && !falling && !movingUp && canJump){
         //jump()
         movingUp = true
         playerYSpeed = +2*SPEED
         jumping = true
-        
+        jumpEnds = time + 50
+        console.log(keyDown)
     }
+    
     
     if(keyDown == 'a'){
         playerXSpeed = -SPEED
@@ -261,7 +278,10 @@ function keyUp(keyboardEvent){          //Stops movement when key is released
         playerYSpeed = 0
         movingUp = false
         falling = true
-        jumping = false 
+        jumping = false
+        multiplier = 5 
+        canJump = true
+        
     }
 
     if(keyUp == 'a'){
@@ -309,14 +329,10 @@ function flipHorizontally(image, x, y, width, height){          //Image flipping
     ctx.setTransform(1,0,0,1,0,0);
 }
 
-/* function jump(){
-    count = 0
-    while(count < peak && !falling && !movingUp){
-        playerYPosition = playerYPosition - 1//multiplier
-        //multiplier = multiplier * 0.99
-        count ++
-    }
-    multiplier = 1
+/*function jump(){
+    playerYPosition = playerYPosition - multiplier
+    canJump = false
+    //multiplier = 1
     //playerYPosition = playerYPosition + 100
     //playerYPosition = playerYPosition - 100
 } */
