@@ -215,10 +215,7 @@ function updateCanvas(){
         }
     } */
 
-    //if(jumping){
-    //    falling = true
-    //    movingDown = true
-    //}
+
 
     if(falling){
         playerYPosition = playerYPosition + JUMP_SPEED
@@ -229,8 +226,9 @@ function updateCanvas(){
 
     //if(playerYPosition > 550){
     //    playerYPosition = 548
-   //     falling = false
+    //     falling = false
     //}
+
     ctx.strokeStyle = "rgb(0,255,0)" 
 	ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
     ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
@@ -238,6 +236,7 @@ function updateCanvas(){
     if(time == jumpEnds){
         movingUp = false
         falling = true
+        jumping = false
     }
 }
 
@@ -251,31 +250,20 @@ function keyDown(keyboardEvent){                //Moves the player
 
     if(keyDown == 'w'){
         console.log(keyDown)
-        if(!falling && !movingUp){
-        //jump()
-        movingUp = true
-        playerYSpeed = +2*SPEED
-        jumpEnds = time + 80 
-        jumping = true
-        fastFall = true
-        //canJump = false
-        
-        }else{
-            return
-        }
-    }else if(keyDown == 'a'){
+        jump()
+    }
+    if(keyDown == 'a'){
         console.log(keyDown)
         playerXSpeed = -SPEED
         lastDirection = -1
         movingLeft = true
         return
-    }else if(keyDown == 'd'){
+    }
+    if(keyDown == 'd'){
         console.log(keyDown)
         playerXSpeed = +SPEED
         lastDirection = 1
         movingRight = true
-        return
-    }else{
         return
     }
 
@@ -345,13 +333,20 @@ function flipHorizontally(image, x, y, width, height){          //Image flipping
     ctx.setTransform(1,0,0,1,0,0);
 }
 
-/*function jump(){
-    playerYPosition = playerYPosition - multiplier
-    canJump = false
-    //multiplier = 1
-    //playerYPosition = playerYPosition + 100
-    //playerYPosition = playerYPosition - 100
-} */
+function jump(){
+    if(!falling && !movingUp){
+        //jump()
+        jumpEnds = time + 80
+        movingUp = true
+        playerYSpeed = +2*SPEED
+        jumping = true
+        fastFall = true
+        //canJump = false
+        return
+        }else{
+            return
+        }
+}
 
 class Barrier{          //Class for obstacles
     constructor(x, y, w, h){
