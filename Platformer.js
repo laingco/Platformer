@@ -63,6 +63,7 @@ var playerHeight = PLAYER_IMAGE_HEIGHT+15
 var time = 0
 var jumpEnds = 0
 var canJump = true
+var fastFall = false
 
 var playerSpriteRight = new Image()
 playerSpriteRight.src = playerSprite
@@ -84,7 +85,7 @@ function startCanvas(){
     }
     obstacleArray.push(new Barrier(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH))
     obstacleArray.push(new Barrier(350, 400, 300, 150))
-    obstacleArray.push(new Barrier(350, 100, 300, 150))
+    obstacleArray.push(new Barrier(500, 100, 300, 150))
 }
 
 function updateCanvas(){
@@ -117,6 +118,9 @@ function updateCanvas(){
     ctx.fillText("Player Falling: " + falling,30,110)
     ctx.fillText("Player Moving Up: " + movingUp,30,130)
     ctx.fillText("Player Jump ends: " + jumpEnds,30,150)
+    ctx.fillText("Game time " + time, 30, 170)
+    ctx.fillText("CanJump? " + canJump, 30, 190)
+
 
 
     if(lastDirection > 0){
@@ -157,8 +161,9 @@ function updateCanvas(){
             if(movingLeft){
                 playerXPosition = playerXPosition + PUSHBACK
             }
-            if(movingUp&&playerYPosition>obstacleArray[count].yPosition+obstacleArray[count].height){
+            if(jumping&&playerYPosition>=obstacleArray[count].yPosition+obstacleArray[count].height-2*PUSHBACK){
                 playerYPosition = playerYPosition + JUMP_SPEED
+                falling = true
             }
         }
         count++
@@ -216,7 +221,10 @@ function updateCanvas(){
     //}
 
     if(falling){
-        playerYPosition = playerYPosition + JUMP_SPEED + 1
+        playerYPosition = playerYPosition + JUMP_SPEED
+        if(fastFall){
+            playerYPosition = playerYPosition + 2*SPEED  
+        }
     } 
 
     //if(playerYPosition > 550){
@@ -241,32 +249,40 @@ function keyDown(keyboardEvent){                //Moves the player
     //   return
     //}
 
-    if(keyDown == 'w' && !falling && !movingUp && canJump){
+    if(keyDown == 'w'){
+        console.log(keyDown)
+        if(!falling && !movingUp){
         //jump()
         movingUp = true
         playerYSpeed = +2*SPEED
+        jumpEnds = time + 80 
         jumping = true
-        jumpEnds = time + 50
+        fastFall = true
+        //canJump = false
+        
+        }else{
+            return
+        }
+    }else if(keyDown == 'a'){
         console.log(keyDown)
-    }
-    
-    
-    if(keyDown == 'a'){
         playerXSpeed = -SPEED
         lastDirection = -1
         movingLeft = true
+        return
+    }else if(keyDown == 'd'){
+        console.log(keyDown)
+        playerXSpeed = +SPEED
+        lastDirection = 1
+        movingRight = true
+        return
+    }else{
+        return
     }
 
     /* if(keyDown == 's'){
         playerYSpeed = -SPEED
         movingDown = true
     } */
-
-    if(keyDown == 'd'){
-        playerXSpeed = +SPEED
-        lastDirection = 1
-        movingRight = true
-    }
 }
 
 window.addEventListener('keyup', keyUp)
@@ -281,7 +297,7 @@ function keyUp(keyboardEvent){          //Stops movement when key is released
         jumping = false
         multiplier = 5 
         canJump = true
-        
+        fastFall = false
     }
 
     if(keyUp == 'a'){
