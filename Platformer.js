@@ -22,7 +22,7 @@ const PLAYER_IMAGE_WIDTH = 140
 const PLAYER_IMAGE_HEIGHT = 96
 const PUSHBACK = 2
 const SPEED = 2
-const JUMP_HEIGHT = 10
+const JUMP_HEIGHT = 50
 const JUMP_SPEED = 2*SPEED
 
 
@@ -57,7 +57,7 @@ var movingDown = false
 var movingLeft = false
 var movingRight = false
 var multiplier = 1
-var peak = 175
+var peak = 80
 var playerWidth = PLAYER_IMAGE_WIDTH/2.65
 var playerHeight = PLAYER_IMAGE_HEIGHT+15
 var time = 0
@@ -85,7 +85,7 @@ function startCanvas(){
     }
     obstacleArray.push(new Barrier(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH))
     obstacleArray.push(new Barrier(350, 400, 300, 150))
-    obstacleArray.push(new Barrier(500, 100, 300, 150))
+    obstacleArray.push(new Barrier(500, 250, 300, 150))
 }
 
 function updateCanvas(){
@@ -137,22 +137,22 @@ function updateCanvas(){
     count = 0
     while(count < obstacleArray.length){
         ctx.fillRect(obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)
-        if(!jumping&&(playerXPosition+playerWidth<obstacleArray[count].xPosition||playerXPosition>obstacleArray[count].xPosition+obstacleArray[count].width)&&
+        if(!movingUp&&(playerXPosition+playerWidth<obstacleArray[count].xPosition||playerXPosition>obstacleArray[count].xPosition+obstacleArray[count].width)&&
         playerYPosition<obstacleArray[count].yPosition&&playerYPosition>obstacleArray[count].yPosition-10){
             falling = true
         }
-        ctx.strokeRect(obstacleArray[count].xPosition,obstacleArray[count].yPosition,10,10)
+        //ctx.strokeRect(obstacleArray[count].xPosition,obstacleArray[count].yPosition,10,10)
         count++
     }
 
-    count = 0
+    count = 1
     while(count < obstacleArray.length){
         if(isTouching(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15, 
         obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)){
             console.log('Touching!', count, movingUp, movingDown, movingLeft, movingRight, jumping, falling)
             //stop = true
             if(falling&&playerYPosition<=obstacleArray[count].yPosition+2*PUSHBACK){
-                playerYPosition = obstacleArray[count].yPosition-1
+                playerYPosition = obstacleArray[count].yPosition-PUSHBACK
                 falling = false
             }
             if(movingRight){
@@ -161,7 +161,7 @@ function updateCanvas(){
             if(movingLeft){
                 playerXPosition = playerXPosition + PUSHBACK
             }
-            if(jumping&&playerYPosition>=obstacleArray[count].yPosition+obstacleArray[count].height-2*PUSHBACK){
+            if(movingUp&&playerYPosition>=obstacleArray[count].yPosition+obstacleArray[count].height-2*PUSHBACK){
                 playerYPosition = playerYPosition + JUMP_SPEED
                 falling = true
             }
@@ -224,19 +224,38 @@ function updateCanvas(){
         }
     } 
 
-    //if(playerYPosition > 550){
-    //    playerYPosition = 548
-    //     falling = false
-    //}
+    if(playerYPosition > 550){
+        playerYPosition = 548
+         falling = false
+    }
+
+    if(playerXPosition < 0){
+        playerXPosition = 0
+    }
+
+    if(playerYPosition < 0){
+        playerYPosition = 0
+    }
+    if(playerXPosition > WIDTH){
+        playerXPosition = WIDTH
+    }
 
     ctx.strokeStyle = "rgb(0,255,0)" 
-	ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
-    ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
+	//ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
+    //ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
     time ++
     if(time == jumpEnds){
         movingUp = false
         falling = true
         jumping = false
+        //fastFall = true
+    }
+
+    if(playerYSpeed > 0 && !falling){
+        movingUp = true
+    }else if(playerYSpeed > 0 && falling){
+        movingUp = false
+        jumpEnds = time + JUMP_HEIGHT
     }
 }
 
@@ -250,7 +269,9 @@ function keyDown(keyboardEvent){                //Moves the player
 
     if(keyDown == 'w'){
         console.log(keyDown)
-        jump()
+        if(canJump){
+            jump()
+        }
     }
     if(keyDown == 'a'){
         console.log(keyDown)
@@ -334,18 +355,16 @@ function flipHorizontally(image, x, y, width, height){          //Image flipping
 }
 
 function jump(){
+    canJump = false
+    jumping = true
     if(!falling && !movingUp){
         //jump()
-        jumpEnds = time + 80
+        jumpEnds = time + JUMP_HEIGHT
         movingUp = true
         playerYSpeed = +2*SPEED
-        jumping = true
         fastFall = true
         //canJump = false
-        return
-        }else{
-            return
-        }
+    }
 }
 
 class Barrier{          //Class for obstacles
