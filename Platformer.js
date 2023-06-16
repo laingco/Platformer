@@ -86,6 +86,8 @@ function startCanvas(){
     obstacleArray.push(new Barrier(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH))
     obstacleArray.push(new Barrier(350, 400, 300, 150))
     obstacleArray.push(new Barrier(500, 250, 300, 150))
+    obstacleArray.push(new Barrier(WIDTH-50, 375, 50, 30))
+    obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 400))
 }
 
 function updateCanvas(){
