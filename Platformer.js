@@ -1,7 +1,7 @@
 /**
 * Title: Platformer
 * Author: Cooper Laing
-* Date: 19/05/23
+* Date: 21/06/23
 * Version: -
 * Purpose: Assessment
 **/
@@ -15,7 +15,7 @@ const WIDTH = 1000
 const HEIGHT = 600
 const LAVA_COLOR = 'red'           
 const WALL_COLOR = 'dimgray'
-const WALL_WIDTH = 50
+const FLOOR_HEIGHT = 50
 const BACKGROUND_COLOR = 'lightgrey'
 const NUMBER_OF_SNOW = 1000
 const PLAYER_IMAGE_WIDTH = 140
@@ -27,7 +27,7 @@ const JUMP_SPEED = 2*SPEED
 
 //Required variables
 var ctx
-var level = 0                       
+var level = 0                     
 var deaths = 0
 var scale1 = [] 
 var scale2 = []
@@ -35,7 +35,7 @@ var scale3 = []
 var triangleX = []
 var triangleY = []
 var playerXPosition = 0
-var playerYPosition = HEIGHT - WALL_WIDTH - 1
+var playerYPosition = HEIGHT - FLOOR_HEIGHT - 1
 var playerXSpeed = 0
 var playerYSpeed = 0
 var playerSprite = 'Santa/Idle (1).png'
@@ -70,10 +70,10 @@ function startCanvas(){
         scale2.push(Math.random()*0.5)
         scale3.push(Math.random()*0.5)
         triangleX.push(Math.random()* WIDTH)
-        triangleY.push(Math.random()* HEIGHT - (WALL_WIDTH + 2))
+        triangleY.push(Math.random()* HEIGHT - (FLOOR_HEIGHT + 2))
         count++
     }
-    //obstacleArray.push(new Barrier(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH))
+    //obstacleArray.push(new Barrier(0, HEIGHT-FLOOR_HEIGHT, WIDTH, FLOOR_HEIGHT))
 
     //Level 1 Obstacles/barriers
     obstacleArray.push(new Barrier(350, 400, 300, 150, 0, false))
@@ -82,16 +82,44 @@ function startCanvas(){
     obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 375, 0, true))
 
     //Level 2 Obstacles/barriers
-    obstacleArray.push(new Barrier(380, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))            
-    obstacleArray.push(new Barrier(455, HEIGHT-WALL_WIDTH-30, 140, 30, 1, true))
-    obstacleArray.push(new Barrier(595, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))
+    obstacleArray.push(new Barrier(355, HEIGHT-FLOOR_HEIGHT-30, 75, 30, 1, false))            
+    obstacleArray.push(new Barrier(430, HEIGHT-FLOOR_HEIGHT-30, 140, 30, 1, true))
+    obstacleArray.push(new Barrier(570, HEIGHT-FLOOR_HEIGHT-30, 75, 30, 1, false))
 
-    //Level 3 Obstacles
+    //Level 3 Obstacles/barriers
+    obstacleArray.push(new Barrier(265, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 2, false))
+    obstacleArray.push(new Barrier(215, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 2, false))
+    obstacleArray.push(new Barrier(295, HEIGHT-FLOOR_HEIGHT-30, 430, 30, 2, true))
+    obstacleArray.push(new Barrier(265, 0, 490, 10, 2, false))
+    obstacleArray.push(new Barrier(725, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 2, false))
+    obstacleArray.push(new Barrier(755, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 2, false))
+    obstacleArray.push(new Barrier(355, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
+    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
+    obstacleArray.push(new Barrier(615, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
+
+    //Level 4 Obstacles/barriers
+    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-450, 30, 450, 3, false))
+    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-330, 30, 220, 3, false))
+    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-130, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(435, HEIGHT-FLOOR_HEIGHT-280, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(200, HEIGHT-FLOOR_HEIGHT-330, 100, 20, 3, false))
+    obstacleArray.push(new Barrier(200, 0, 30, 220, 3, false))
+    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-470, 185, 20, 3, false))
+    obstacleArray.push(new Barrier(515, HEIGHT-FLOOR_HEIGHT-30, 300, 30, 3, true))
+    obstacleArray.push(new Barrier(625, HEIGHT-FLOOR_HEIGHT-520, 30, 370, 3, false))
+    obstacleArray.push(new Barrier(815, HEIGHT-FLOOR_HEIGHT-30, 60, 30, 3, false))
+    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-170, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(805, HEIGHT-FLOOR_HEIGHT-300, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 3, false))
+
+    //Level 5 Obstacle/barriers
+    
+
 }
 
 function updateCanvas(){
     //Win conditions/End screen
-    if(level == 10){
+    if(level == 5){
         ctx.fillStyle = 'white'
         ctx.fillRect(0, 0, WIDTH, HEIGHT)
         ctx.font = "100px Arial";
@@ -102,7 +130,7 @@ function updateCanvas(){
 
     //Drawing randmized background
     ctx.fillStyle = BACKGROUND_COLOR
-    ctx.fillRect(0, 0, WIDTH, HEIGHT-WALL_WIDTH)
+    ctx.fillRect(0, 0, WIDTH, HEIGHT-FLOOR_HEIGHT)
     var count = 0
     while(count < NUMBER_OF_SNOW){
         ctx.fillStyle = 'white'
@@ -117,7 +145,7 @@ function updateCanvas(){
 
     //Drawing floor
     ctx.fillStyle = WALL_COLOR
-    ctx.fillRect(0, HEIGHT-WALL_WIDTH, WIDTH, WALL_WIDTH)
+    ctx.fillRect(0, HEIGHT-FLOOR_HEIGHT, WIDTH, FLOOR_HEIGHT)
 
     //Info text
     ctx.fillStyle = 'black'
@@ -232,7 +260,7 @@ function updateCanvas(){
 
     //Outlines for debugging
     ctx.strokeStyle = "rgb(0,255,0)" 
-	//ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
+	ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
     //ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
 
     //Main game clock for jumping
@@ -260,7 +288,7 @@ function updateCanvas(){
             if(isTouching(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15, 
             obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)){
             playerXPosition = 0
-            playerYPosition = HEIGHT - WALL_WIDTH - 1
+            playerYPosition = HEIGHT - FLOOR_HEIGHT - 1
             level--
             deaths++
             }
