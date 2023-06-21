@@ -82,9 +82,9 @@ function startCanvas(){
     obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 375, 0, true))
 
     //Level 2 Obstacles/barriers
-    obstacleArray.push(new Barrier(355, HEIGHT-FLOOR_HEIGHT-30, 75, 30, 1, false))            
-    obstacleArray.push(new Barrier(430, HEIGHT-FLOOR_HEIGHT-30, 140, 30, 1, true))
-    obstacleArray.push(new Barrier(570, HEIGHT-FLOOR_HEIGHT-30, 75, 30, 1, false))
+    obstacleArray.push(new Barrier(340, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 1, false))            
+    obstacleArray.push(new Barrier(415, HEIGHT-FLOOR_HEIGHT-30, 190, 30, 1, true))
+    obstacleArray.push(new Barrier(605, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 1, false))
 
     //Level 3 Obstacles/barriers
     obstacleArray.push(new Barrier(265, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 2, false))
@@ -107,7 +107,7 @@ function startCanvas(){
     obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-470, 185, 20, 3, false))
     obstacleArray.push(new Barrier(515, HEIGHT-FLOOR_HEIGHT-30, 300, 30, 3, true))
     obstacleArray.push(new Barrier(625, HEIGHT-FLOOR_HEIGHT-520, 30, 370, 3, false))
-    obstacleArray.push(new Barrier(815, HEIGHT-FLOOR_HEIGHT-30, 60, 30, 3, false))
+    obstacleArray.push(new Barrier(815, HEIGHT-FLOOR_HEIGHT-40, 60, 40, 3, false))
     obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-170, 50, 20, 3, false))
     obstacleArray.push(new Barrier(805, HEIGHT-FLOOR_HEIGHT-300, 50, 20, 3, false))
     obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 3, false))
