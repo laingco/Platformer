@@ -82,9 +82,11 @@ function startCanvas(){
     obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 375, 0, true))
 
     //Level 2 Obstacles/barriers
-    obstacleArray.push(new Barrier(400, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))            
-    obstacleArray.push(new Barrier(475, HEIGHT-WALL_WIDTH-30, 75, 30, 1, true))
-    obstacleArray.push(new Barrier(550, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))
+    obstacleArray.push(new Barrier(380, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))            
+    obstacleArray.push(new Barrier(455, HEIGHT-WALL_WIDTH-30, 140, 30, 1, true))
+    obstacleArray.push(new Barrier(595, HEIGHT-WALL_WIDTH-30, 75, 30, 1, false))
+
+    //Level 3 Obstacles
 }
 
 function updateCanvas(){
@@ -279,7 +281,7 @@ function keyDown(keyboardEvent){
     var keyDown = keyboardEvent.key
 
     //Jumps when the 'W' key is pressed
-    if(keyDown == 'w'){
+    if(keyDown == 'w' || keyDown == ' '){
         console.log(keyDown)
         if(canJump){
             jump()
@@ -312,7 +314,7 @@ function keyUp(keyboardEvent){
     var keyUp = keyboardEvent.key
 
     //Stops the player jumping when the key is released
-    if(keyUp == 'w'){
+    if(keyUp == 'w' || keyUp == ' '){
         playerYSpeed = 0
         movingUp = false
         falling = true
