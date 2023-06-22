@@ -27,7 +27,7 @@ const JUMP_SPEED = 2*SPEED
 
 //Required variables
 var ctx
-var level = 0                     
+var level = 4                     
 var deaths = 0
 var scale1 = [] 
 var scale2 = []
@@ -113,7 +113,9 @@ function startCanvas(){
     obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 3, false))
 
     //Level 5 Obstacle/barriers
-    
+    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-200, 30, 180, 4, false))
+    obstacleArray.push(new Barrier(290, HEIGHT-FLOOR_HEIGHT-220, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(180, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 4, false))
 
 }
 
