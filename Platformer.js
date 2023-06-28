@@ -27,7 +27,7 @@ const JUMP_SPEED = 2*SPEED
 
 //Required variables
 var ctx
-var level = 4                     
+var level = 0                   
 var deaths = 0
 var scale1 = [] 
 var scale2 = []
@@ -76,52 +76,55 @@ function startCanvas(){
     //obstacleArray.push(new Barrier(0, HEIGHT-FLOOR_HEIGHT, WIDTH, FLOOR_HEIGHT))
 
     //Level 1 Obstacles/barriers
-    obstacleArray.push(new Barrier(350, 400, 300, 150, 0, false))
-    obstacleArray.push(new Barrier(500, 250, 300, 150, 0, false))
-    obstacleArray.push(new Barrier(WIDTH-50, 375, 50, 30, 0, false))
-    obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 375, 0, true))
+    obstacleArray.push(new Barrier(350, 400, 300, 150, 1, false))
+    obstacleArray.push(new Barrier(500, 250, 300, 150, 1, false))
+    obstacleArray.push(new Barrier(WIDTH-50, 375, 50, 30, 1, false))
+    obstacleArray.push(new Barrier(WIDTH-10, 0, 10, 375, 1, true))
 
     //Level 2 Obstacles/barriers
-    obstacleArray.push(new Barrier(340, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 1, false))            
-    obstacleArray.push(new Barrier(415, HEIGHT-FLOOR_HEIGHT-30, 190, 30, 1, true))
-    obstacleArray.push(new Barrier(605, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 1, false))
+    obstacleArray.push(new Barrier(340, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 2, false))            
+    obstacleArray.push(new Barrier(415, HEIGHT-FLOOR_HEIGHT-30, 190, 30, 2, true))
+    obstacleArray.push(new Barrier(605, HEIGHT-FLOOR_HEIGHT-35, 75, 35, 2, false))
 
     //Level 3 Obstacles/barriers
-    obstacleArray.push(new Barrier(265, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 2, false))
-    obstacleArray.push(new Barrier(215, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 2, false))
-    obstacleArray.push(new Barrier(295, HEIGHT-FLOOR_HEIGHT-30, 430, 30, 2, true))
-    obstacleArray.push(new Barrier(265, 0, 490, 10, 2, false))
-    obstacleArray.push(new Barrier(725, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 2, false))
-    obstacleArray.push(new Barrier(755, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 2, false))
-    obstacleArray.push(new Barrier(355, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
-    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
-    obstacleArray.push(new Barrier(615, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 2, false))
+    obstacleArray.push(new Barrier(265, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 3, false))
+    obstacleArray.push(new Barrier(215, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(295, HEIGHT-FLOOR_HEIGHT-30, 430, 30, 3, true))
+    obstacleArray.push(new Barrier(265, 0, 490, 10, 3, false))
+    obstacleArray.push(new Barrier(725, HEIGHT-FLOOR_HEIGHT-350, 30, 350, 3, false))
+    obstacleArray.push(new Barrier(755, HEIGHT-FLOOR_HEIGHT-180, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(355, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(615, HEIGHT-FLOOR_HEIGHT-350, 50, 20, 3, false))
 
     //Level 4 Obstacles/barriers
-    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-450, 30, 450, 3, false))
-    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-330, 30, 220, 3, false))
-    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-130, 50, 20, 3, false))
-    obstacleArray.push(new Barrier(435, HEIGHT-FLOOR_HEIGHT-280, 50, 20, 3, false))
-    obstacleArray.push(new Barrier(200, HEIGHT-FLOOR_HEIGHT-330, 100, 20, 3, false))
-    obstacleArray.push(new Barrier(200, 0, 30, 220, 3, false))
-    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-470, 185, 20, 3, false))
-    obstacleArray.push(new Barrier(515, HEIGHT-FLOOR_HEIGHT-30, 300, 30, 3, true))
-    obstacleArray.push(new Barrier(625, HEIGHT-FLOOR_HEIGHT-520, 30, 370, 3, false))
-    obstacleArray.push(new Barrier(815, HEIGHT-FLOOR_HEIGHT-40, 60, 40, 3, false))
-    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-170, 50, 20, 3, false))
-    obstacleArray.push(new Barrier(805, HEIGHT-FLOOR_HEIGHT-300, 50, 20, 3, false))
-    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 3, false))
+    obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-450, 30, 450, 4, false))
+    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-330, 30, 220, 4, false))
+    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-130, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(435, HEIGHT-FLOOR_HEIGHT-280, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(200, HEIGHT-FLOOR_HEIGHT-330, 100, 20, 4, false))
+    obstacleArray.push(new Barrier(200, 0, 30, 220, 4, false))
+    obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-470, 185, 20, 4, false))
+    obstacleArray.push(new Barrier(515, HEIGHT-FLOOR_HEIGHT-30, 300, 30, 4, true))
+    obstacleArray.push(new Barrier(625, HEIGHT-FLOOR_HEIGHT-520, 30, 370, 4, false))
+    obstacleArray.push(new Barrier(815, HEIGHT-FLOOR_HEIGHT-40, 60, 40, 4, false))
+    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-170, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(805, HEIGHT-FLOOR_HEIGHT-300, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 4, false))
 
     //Level 5 Obstacle/barriers
-    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-200, 30, 180, 4, false))
-    obstacleArray.push(new Barrier(290, HEIGHT-FLOOR_HEIGHT-220, 50, 20, 4, false))
-    obstacleArray.push(new Barrier(180, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 4, false))
+    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-200, 30, 180, 5, false))
+    obstacleArray.push(new Barrier(290, HEIGHT-FLOOR_HEIGHT-220, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(180, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(230, HEIGHT-FLOOR_HEIGHT-20, 180, 20, 5, true))
+    obstacleArray.push(new Barrier(410, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(440, 0, 20, HEIGHT-FLOOR_HEIGHT-165, 5, true))
 
 }
 
 function updateCanvas(){
     //Win conditions/End screen
-    if(level == 5){
+    if(level == 6){
         ctx.fillStyle = 'white'
         ctx.fillRect(0, 0, WIDTH, HEIGHT)
         ctx.font = "100px Arial";
@@ -148,12 +151,26 @@ function updateCanvas(){
     //Drawing floor
     ctx.fillStyle = WALL_COLOR
     ctx.fillRect(0, HEIGHT-FLOOR_HEIGHT, WIDTH, FLOOR_HEIGHT)
+    
+    //Opening screen
+    if(level==0){
+        ctx.font = "30px Arial";
+        ctx.fillStyle = 'black';
+        ctx.fillText('Welcome to the platformer game!', 75, 100);
+        ctx.fillText('Your goal is to reach the other side of the screen.', 75, 140);
+        ctx.fillText('You have to avoid touching the lava and also avoid landing on it!', 75, 180);
+        ctx.fillText('You can climb up obstacles if you jump into the top corner of them.', 75, 220);
+        ctx.fillText('Use A/D to move left/right and W or SPACE to jump.', 75, 260);
+        ctx.fillText('Your goal is to beat level five.', 75, 300);
+    }   
 
     //Info text
-    ctx.fillStyle = 'black'
-    ctx.font = '20px Arial'
-    ctx.fillText("Level: " + (level+1),30,30)
-	ctx.fillText('Deaths: ' + deaths,30,50)
+    if(level>0){
+        ctx.fillStyle = 'black'
+        ctx.font = '20px Arial'
+        ctx.fillText("Level: " + level,30,30)
+	    ctx.fillText('Deaths: ' + deaths,30,50)
+    }
     /*ctx.fillText("Player X speed: " + playerXSpeed,30,70)
 	ctx.fillText("Player Y speed: " + playerYSpeed,30,90)
     ctx.fillText("Player Falling: " + falling,30,110)
@@ -166,11 +183,13 @@ function updateCanvas(){
 
 
     //Facing/drawing the player in the correct orientation
-    if(lastDirection > 0){
-        ctx.drawImage(playerSpriteRight, playerXPosition-30, playerYPosition-PLAYER_IMAGE_HEIGHT+10, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT)
-    }else if(lastDirection < 0){
-        flipHorizontally(playerSpriteRight,playerXPosition-60, playerYPosition-PLAYER_IMAGE_HEIGHT+10, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT)
-    } 
+    if(level>0){
+        if(lastDirection > 0){
+            ctx.drawImage(playerSpriteRight, playerXPosition-30, playerYPosition-PLAYER_IMAGE_HEIGHT+10, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT)
+        }else if(lastDirection < 0){
+            flipHorizontally(playerSpriteRight,playerXPosition-60, playerYPosition-PLAYER_IMAGE_HEIGHT+10, PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT)
+        } 
+    }
 
     //Makes the player move in response to the speed variables
     playerXPosition = playerXPosition + playerXSpeed
@@ -188,7 +207,7 @@ function updateCanvas(){
                 ctx.fillStyle = WALL_COLOR
                 ctx.fillRect(obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)
             }
-            if(!movingUp&&(playerXPosition+playerWidth<obstacleArray[count].xPosition && playerXPosition+playerWidth>obstacleArray[count].xPosition-3||
+            if(!obstacleArray[count].obst&&!movingUp&&(playerXPosition+playerWidth<obstacleArray[count].xPosition && playerXPosition+playerWidth>obstacleArray[count].xPosition-3||
                 playerXPosition>obstacleArray[count].xPosition+obstacleArray[count].width && playerXPosition<obstacleArray[count].xPosition+obstacleArray[count].width+3)&&
             playerYPosition<obstacleArray[count].yPosition&&playerYPosition>obstacleArray[count].yPosition-10){
                 falling = true
@@ -261,8 +280,10 @@ function updateCanvas(){
     }
 
     //Outlines for debugging
-    ctx.strokeStyle = "rgb(0,255,0)" 
-	ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
+    if(level>0){
+        ctx.strokeStyle = "rgb(0,255,0)" 
+	    ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
+    }
     //ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
 
     //Main game clock for jumping
@@ -311,7 +332,7 @@ function keyDown(keyboardEvent){
     var keyDown = keyboardEvent.key
 
     //Jumps when the 'W' key is pressed
-    if(keyDown == 'w' || keyDown == ' '){
+    if(keyDown == 'w' || keyDown == ' ' && level>0){
         console.log(keyDown)
         if(canJump){
             jump()
@@ -319,7 +340,7 @@ function keyDown(keyboardEvent){
     }
 
     //Moves the player left when 'A' key is pressed
-    if(keyDown == 'a'){
+    if(keyDown == 'a' && level>0){
         console.log(keyDown)
         playerXSpeed = -SPEED
         lastDirection = -1
@@ -328,12 +349,17 @@ function keyDown(keyboardEvent){
     }
 
     //Moves the player right when the 'D' key is pressed
-    if(keyDown == 'd'){
+    if(keyDown == 'd' && level>0){
         console.log(keyDown)
         playerXSpeed = +SPEED
         lastDirection = 1
         movingRight = true
         return
+    }
+        
+    //Leaves opening screen
+    if(keyDown == ' '&&level == 0){
+        level++
     }
 }
 
@@ -344,7 +370,7 @@ function keyUp(keyboardEvent){
     var keyUp = keyboardEvent.key
 
     //Stops the player jumping when the key is released
-    if(keyUp == 'w' || keyUp == ' '){
+    if(keyUp == 'w' || keyUp == ' ' && level>0){
         playerYSpeed = 0
         movingUp = false
         falling = true
@@ -354,13 +380,13 @@ function keyUp(keyboardEvent){
     }
 
     //Stops the player moving left when the key is released
-    if(keyUp == 'a'){
+    if(keyUp == 'a' && level>0){
         playerXSpeed = 0
         movingLeft = false
     }
 
     //Stops the player moving right when the key is released
-    if(keyUp == 'd'){
+    if(keyUp == 'd' && level>0){
         playerXSpeed = 0
         movingRight = false
     }
