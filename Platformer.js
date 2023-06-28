@@ -162,6 +162,7 @@ function updateCanvas(){
         ctx.fillText('You can climb up obstacles if you jump into the top corner of them.', 75, 220);
         ctx.fillText('Use A/D to move left/right and W or SPACE to jump.', 75, 260);
         ctx.fillText('Your goal is to beat level five.', 75, 300);
+        ctx.fillText('Press space to continue.', 75, 360);
     }   
 
     //Info text
