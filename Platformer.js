@@ -14,14 +14,14 @@ console.log("Platformer game")
 const WIDTH = 1000
 const HEIGHT = 600
 const LAVA_COLOR = 'red'           
-const WALL_COLOR = 'dimgray'
+const OBSTACLE_COLOR = 'dimgray' 
 const FLOOR_HEIGHT = 50
 const BACKGROUND_COLOR = 'lightgrey'
 const NUMBER_OF_SNOW = 1000
 const PLAYER_IMAGE_WIDTH = 140
 const PLAYER_IMAGE_HEIGHT = 96
-const PUSHBACK = 2
-const SPEED = 2
+const PUSHBACK = 2 //Amount the player is pushed back fromm collision
+const SPEED = 2 //Speed of player
 const JUMP_HEIGHT = 50
 const JUMP_SPEED = 2*SPEED
 
@@ -113,12 +113,12 @@ function startCanvas(){
     obstacleArray.push(new Barrier(655, HEIGHT-FLOOR_HEIGHT-470, 50, 20, 4, false))
 
     //Level 5 Obstacle/barriers
-    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-200, 30, 180, 5, false))
-    obstacleArray.push(new Barrier(290, HEIGHT-FLOOR_HEIGHT-220, 50, 20, 5, false))
-    obstacleArray.push(new Barrier(180, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
-    obstacleArray.push(new Barrier(230, HEIGHT-FLOOR_HEIGHT-20, 180, 20, 5, true))
-    obstacleArray.push(new Barrier(410, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
-    obstacleArray.push(new Barrier(440, 0, 20, HEIGHT-FLOOR_HEIGHT-165, 5, true))
+    obstacleArray.push(new Barrier(440, HEIGHT-FLOOR_HEIGHT-200, 30, 180, 5, false))
+    obstacleArray.push(new Barrier(430, HEIGHT-FLOOR_HEIGHT-220, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(320, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(370, HEIGHT-FLOOR_HEIGHT-20, 180, 20, 5, true))
+    obstacleArray.push(new Barrier(550, HEIGHT-FLOOR_HEIGHT-20, 50, 20, 5, false))
+    obstacleArray.push(new Barrier(580, 0, 20, HEIGHT-FLOOR_HEIGHT-165, 5, true))
 
 }
 
@@ -149,7 +149,7 @@ function updateCanvas(){
     }
 
     //Drawing floor
-    ctx.fillStyle = WALL_COLOR
+    ctx.fillStyle = OBSTACLE_COLOR
     ctx.fillRect(0, HEIGHT-FLOOR_HEIGHT, WIDTH, FLOOR_HEIGHT)
     
     //Opening screen
@@ -205,7 +205,7 @@ function updateCanvas(){
                 ctx.fillRect(obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)
 
             }else if(obstacleArray[count].obst == false){
-                ctx.fillStyle = WALL_COLOR
+                ctx.fillStyle = OBSTACLE_COLOR
                 ctx.fillRect(obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)
             }
             if(!obstacleArray[count].obst&&!movingUp&&(playerXPosition+playerWidth<obstacleArray[count].xPosition && playerXPosition+playerWidth>obstacleArray[count].xPosition-3||
@@ -261,7 +261,7 @@ function updateCanvas(){
 
     //Allows the player to go back levels and also prevents falling off of level 1
     if(playerXPosition < 0){
-        if(level == 0){
+        if(level == 1){
             playerXPosition = 0
         }else {
             playerXPosition = WIDTH
