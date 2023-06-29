@@ -24,10 +24,11 @@ const PUSHBACK = 2 //Amount the player is pushed back fromm collision
 const SPEED = 2 //Speed of player
 const JUMP_HEIGHT = 50
 const JUMP_SPEED = 2*SPEED
+const TRIANGLE_SCALE = 0.5
 
 //Required variables
 var ctx
-var level = 0                   
+var level = 0                  
 var deaths = 0
 var scale1 = [] 
 var scale2 = []
@@ -61,14 +62,14 @@ window.onload=startCanvas               //Start canvas
 
 function startCanvas(){
     ctx=document.getElementById("myCanvas").getContext("2d")
-    timer = setInterval(updateCanvas, 5);
+    timer = setInterval(updateCanvas, 7.5);
     
-    //Creation od arrays for background image
+    //Creation of arrays for background image
     var count = 0                                               
     while(count < NUMBER_OF_SNOW){
-        scale1.push(Math.random()*0.5)
-        scale2.push(Math.random()*0.5)
-        scale3.push(Math.random()*0.5)
+        scale1.push(Math.random()*TRIANGLE_SCALE)
+        scale2.push(Math.random()*TRIANGLE_SCALE)
+        scale3.push(Math.random()*TRIANGLE_SCALE)
         triangleX.push(Math.random()* WIDTH)
         triangleY.push(Math.random()* HEIGHT - (FLOOR_HEIGHT + 2))
         count++
@@ -99,10 +100,10 @@ function startCanvas(){
 
     //Level 4 Obstacles/barriers
     obstacleArray.push(new Barrier(485, HEIGHT-FLOOR_HEIGHT-450, 30, 450, 4, false))
-    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-330, 30, 220, 4, false))
+    obstacleArray.push(new Barrier(300, HEIGHT-FLOOR_HEIGHT-310, 30, 200, 4, false))
     obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-130, 50, 20, 4, false))
     obstacleArray.push(new Barrier(435, HEIGHT-FLOOR_HEIGHT-280, 50, 20, 4, false))
-    obstacleArray.push(new Barrier(200, HEIGHT-FLOOR_HEIGHT-330, 100, 20, 4, false))
+    obstacleArray.push(new Barrier(200, HEIGHT-FLOOR_HEIGHT-330, 130, 20, 4, false))
     obstacleArray.push(new Barrier(200, 0, 30, 220, 4, false))
     obstacleArray.push(new Barrier(330, HEIGHT-FLOOR_HEIGHT-470, 185, 20, 4, false))
     obstacleArray.push(new Barrier(515, HEIGHT-FLOOR_HEIGHT-30, 300, 30, 4, true))
