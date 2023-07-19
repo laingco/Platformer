@@ -354,7 +354,7 @@ function keyDown(keyboardEvent){
     }
 
     //Moves the player left when 'A' key is pressed
-    if(keyDown == 'a' && level>0){
+    if(keyDown == 'a' && level>0 && !movingRight){
         console.log(keyDown)
         playerXSpeed = -SPEED
         lastDirection = -1
@@ -363,7 +363,7 @@ function keyDown(keyboardEvent){
     }
 
     //Moves the player right when the 'D' key is pressed
-    if(keyDown == 'd' && level>0){
+    if(keyDown == 'd' && level>0 && !movingLeft){
         console.log(keyDown)
         playerXSpeed = +SPEED
         lastDirection = 1
