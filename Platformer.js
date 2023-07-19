@@ -54,6 +54,7 @@ var time = 0
 var jumpEnds = 0
 var canJump = true
 var fastFall = false
+var clockTime = 0
 
 var playerSpriteRight = new Image()
 playerSpriteRight.src = playerSprite
@@ -63,7 +64,8 @@ window.onload=startCanvas               //Start canvas
 function startCanvas(){
     ctx=document.getElementById("myCanvas").getContext("2d")
     timer = setInterval(updateCanvas, 7.5);
-    
+    clock = setInterval(clock, 10)
+
     //Creation of arrays for background image
     var count = 0                                               
     while(count < NUMBER_OF_SNOW){
@@ -131,6 +133,9 @@ function updateCanvas(){
         ctx.font = "100px Arial";
         ctx.fillStyle = 'black'
         ctx.fillText("You Win!", 320, 325);
+        ctx.font = "30px Arial";
+        ctx.fillStyle = 'black'
+        ctx.fillText('Timer: ' + clockTime/100,30,70)
         return
     }
 
@@ -172,6 +177,7 @@ function updateCanvas(){
         ctx.font = '20px Arial'
         ctx.fillText("Level: " + level,30,30)
 	    ctx.fillText('Deaths: ' + deaths,30,50)
+        ctx.fillText('Timer: ' + clockTime/100,30,70)
     }
     /*ctx.fillText("Player X speed: " + playerXSpeed,30,70)
 	ctx.fillText("Player Y speed: " + playerYSpeed,30,90)
@@ -324,6 +330,12 @@ function updateCanvas(){
     //Prevents the level variable from going negative
     if(level < 0){
         level++
+    }
+}
+
+function clock(){
+    if(level > 0 && level < 6){
+        clockTime++
     }
 }
 
