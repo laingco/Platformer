@@ -20,7 +20,7 @@ const BACKGROUND_COLOR = 'lightgrey'
 const NUMBER_OF_SNOW = 1000
 const PLAYER_IMAGE_WIDTH = 140
 const PLAYER_IMAGE_HEIGHT = 96
-const PUSHBACK = 2 //Amount the player is pushed back fromm collision
+const PUSHBACK = 2 //Amount the player is pushed back from collision
 const SPEED = 2 //Speed of player
 const JUMP_HEIGHT = 50
 const JUMP_SPEED = 2*SPEED
@@ -59,7 +59,7 @@ var clockTime = 0
 var playerSpriteRight = new Image()
 playerSpriteRight.src = playerSprite
 
-window.onload=startCanvas               //Start canvas
+window.onload=startCanvas
 
 function startCanvas(){
     ctx=document.getElementById("myCanvas").getContext("2d")
@@ -333,6 +333,7 @@ function updateCanvas(){
     }
 }
 
+//Timer for run time
 function clock(){
     if(level > 0 && level < 6){
         clockTime++
