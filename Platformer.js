@@ -288,10 +288,10 @@ function updateCanvas(){
     }
 
     //Outlines for debugging
-    if(level>0){
-        ctx.strokeStyle = "rgb(0,255,0)" 
-	    ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
-    }
+    //if(level>0){
+        //ctx.strokeStyle = "rgb(0,255,0)" 
+	    //ctx.strokeRect(playerXPosition,playerYPosition-PLAYER_IMAGE_HEIGHT+15,PLAYER_IMAGE_WIDTH/2.65,PLAYER_IMAGE_HEIGHT-15);
+    //}
     //ctx.strokeRect(playerXPosition, playerYPosition, 10, -10)
 
     //Main game clock for jumping
