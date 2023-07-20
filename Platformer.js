@@ -320,8 +320,10 @@ function updateCanvas(){
             obstacleArray[count].xPosition, obstacleArray[count].yPosition, obstacleArray[count].width, obstacleArray[count].height)){
             playerXPosition = 0
             playerYPosition = HEIGHT - FLOOR_HEIGHT - 1
-            level--
             deaths++
+            if(level>1){
+                level--
+            }
             }
         }
         count++
